@@ -1,0 +1,44 @@
+ActiveSeven
+===========
+
+A rails implementation for 7th normal form
+
+
+Usage
+=====
+
+Use ActiveSeven::Base rather than ActiveRecord::Base.
+
+  class Monster < ActiveSeven::Base
+    has :name,  :string
+    has :level, :inetger
+  end
+
+ActiveSeven::Base gives "has" class method to define columns.
+
+
+Creating Tables
+===============
+
+ActiveSeven doesn't require migration files for table creation,
+because it has already got all information about its schema.
+Just send 'migrate' message to your model class on console.
+
+  Monster.migrate
+
+This creates tables for monster class with 7th normal form.
+If you want to drop or remigrate it, :down argment helps you.
+
+  Monster.migrate :down
+  Monster.migrate
+
+
+Known Bugs
+==========
+
+* "status" feature is broken for loading data
+* Support only READ operations of CRUD
+
+
+Copyright (c) 2008 maiha@wota.jp, released under the MIT license
+
